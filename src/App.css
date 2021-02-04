@@ -23,7 +23,6 @@ body {
     margin-top: 20px;
     display: flex;
     align-items: center;
-    width: 100%;
     padding-left: 30px;
 }
 
@@ -53,17 +52,73 @@ body {
 /*Gallery*/
 .Gallery {
     width: 100%;
+    text-align: center;
+    margin-top: 20PX;
 }
 
 .track {
     width: 220px;
     height: 220px;
-    border: 3px solid #fff;
     position: relative;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
 }
 
 .track-img {
-    width: 220px;
-    height: 220px;
+    border-radius: 3px;
+    border: 3px solid #fff;
+    width: 100%;
+    height: 100%;
     position: absolute;
+    left: 0;
+}
+
+.track-text {
+    background-color: #000;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0.75;
+    padding: 10px;
+}
+
+.track-play {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.track-play-inner {
+    width: 60px;
+    height: 60px;
+    background-color: #000;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 25px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+.track-play-inner:hover {
+    opacity: 0.8;
+    animation-name: fade-in;
+    animation-duration: 0.5s;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.8;
+    }
 }

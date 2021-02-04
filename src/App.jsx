@@ -20,7 +20,12 @@ class App extends Component {
         this.search = this.search.bind(this);
     }
 
-    search() {
+    handleSearchBarKeyPress(event) {
+        console.log(event.key);
+    }
+
+    search(event) {
+        event.preventDefault();
         const BASE_URL = 'https://deezerdevs-deezer.p.rapidapi.com/search';
         let FETCH_URL = `${BASE_URL}?q=${this.state.query}`;
         console.log('FETCH_URL', FETCH_URL);
@@ -37,15 +42,20 @@ class App extends Component {
             .then(json => {
                 let tracks = json.data;
                 this.setState({ tracks })
+
+                if (tracks.length === 0) {
+                    this.setState({
+                        artist: null
+                    });
+                    return;
+                }
+
                 FETCH_URL = `https://deezerdevs-deezer.p.rapidapi.com/artist/${tracks[0].artist.id}`;
                 fetch(FETCH_URL, { method: 'GET', headers: myHeaders }).then(response => response.json()).then(json => {
                     this.setState({
                         artist: json
                     });
                 })
-
-
-                //http://e-cdn-images.deezer.com/images/cover/5b59dc18e109515420f8237719bd2186/1400x1400-000000-80-0-0.jpg
             });
     }
 
@@ -59,9 +69,9 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="app-title">Music Master</div>
-                <Form inline>
-                    <FormControl onChange={this.updateQuery} className="searchbar" placeholder="search an artist" />
-                    <Button onClick={this.search}>Search</Button>
+                <Form inline onSubmit={this.search}>
+                    <FormControl onKeyPress={this.handleSearchBarKeyPress} onChange={this.updateQuery} className="searchbar" placeholder="search an artist" />
+                    <Button as="input" type="submit" value="Search" />
                 </Form>
                 {this.state.artist !== null ? <Artist artist={this.state.artist} /> : <div></div>}
                 <Gallery tracks={this.state.tracks} />
