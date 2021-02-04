@@ -1,38 +1,69 @@
+body {
+    background-color: #000;
+    color: white;
+}
+
 .App {
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.searchbar {
+    margin-right: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app-title {
+    font-size: 40px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/*Artist*/
+.Artist {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.artist-name {
+    font-size: 30px;
+    font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.artist-image {
+    width: 200px;
+    height: 200px;
+    border: 3px solid #FFF;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.artist-image-inner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artist-info {
+    margin-left: 10px;
+}
+
+/*Gallery*/
+.Gallery {
+    width: 100%;
+}
+
+.track {
+    width: 220px;
+    height: 220px;
+    border: 3px solid #fff;
+    position: relative;
+}
+
+.track-img {
+    width: 220px;
+    height: 220px;
+    position: absolute;
 }
