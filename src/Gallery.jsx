@@ -39,7 +39,6 @@ class Gallery extends Component {
     }
 
     render() {
-        console.log('gallery.props', this.props);
         const { tracks } = this.props;
         let content = tracks !== undefined ?
             <div className="Gallery">

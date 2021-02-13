@@ -13,9 +13,6 @@ class Artist extends Component {
             artist = this.props.artist;
         }
 
-        console.log(artist);
-
-
         return (
             <div className="Artist">
                 <div className="artist-image">

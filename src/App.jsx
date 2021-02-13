@@ -18,10 +18,13 @@ class App extends Component {
 
         this.updateQuery = this.updateQuery.bind(this);
         this.search = this.search.bind(this);
+        this.handleSearchBarKeyPress = this.handleSearchBarKeyPress.bind(this);
     }
 
     handleSearchBarKeyPress(event) {
-        console.log(event.key);
+        if(event.key === 'Enter') {
+            this.search(event);
+        }
     }
 
     search(event) {
@@ -41,14 +44,14 @@ class App extends Component {
         }).then(response => response.json())
             .then(json => {
                 let tracks = json.data;
-                this.setState({ tracks })
-
-                if (tracks.length === 0) {
+                
+                if (tracks.length === 0 || tracks !== undefined) {
                     this.setState({
                         artist: null
                     });
                     return;
                 }
+                this.setState({ tracks })
 
                 FETCH_URL = `https://deezerdevs-deezer.p.rapidapi.com/artist/${tracks[0].artist.id}`;
                 fetch(FETCH_URL, { method: 'GET', headers: myHeaders }).then(response => response.json()).then(json => {
